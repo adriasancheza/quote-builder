@@ -3,12 +3,15 @@ import { createRoot } from 'react-dom/client';
 import '@fontsource-variable/inter';
 import './styles/global.css';
 import App from './App.tsx';
+import { AppStoreProvider } from './store/AppStoreProvider';
 
 const container = document.getElementById('root');
 if (!container) throw new Error('Root element #root not found');
 
 createRoot(container).render(
   <StrictMode>
-    <App />
+    <AppStoreProvider>
+      <App />
+    </AppStoreProvider>
   </StrictMode>,
 );

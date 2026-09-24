@@ -5,7 +5,15 @@
   "description": "Create professional quotes (presupuestos) for freelancers and small businesses and export them to PDF. 100% client-side.",
   "license": "MIT",
   "author": "Adrià Sánchez",
+  "homepage": "https://adriasancheza.github.io/quote-builder/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adriasancheza/quote-builder.git"
+  },
   "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

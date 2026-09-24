@@ -1,6 +1,6 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { renderWithStore } from '../test/renderWithStore';
 import { QuoteEditorPage } from './QuoteEditorPage';
 
@@ -58,6 +58,14 @@ describe('QuoteEditorPage', () => {
     const [breakdown] = screen.getAllByRole('table', { name: 'Desglose de IVA' });
     const rows = within(breakdown!).getAllByRole('row').slice(1).map(text);
     expect(rows).toEqual(['21 %200,00 €42,00 €', '10 %25,25 €2,53 €']);
+  });
+
+  it('opens the print dialog to download the PDF', async () => {
+    const user = userEvent.setup();
+    const print = vi.spyOn(window, 'print').mockImplementation(() => {});
+    renderEditor();
+    await user.click(screen.getByRole('button', { name: 'Descargar PDF' }));
+    expect(print).toHaveBeenCalledOnce();
   });
 
   it('removes a line', async () => {

@@ -36,7 +36,7 @@ interface AppShellProps {
 export function AppShell({ route, children }: AppShellProps) {
   return (
     <div className={styles.shell}>
-      <a className={styles.skipLink} href="#main">
+      <a className={`${styles.skipLink} no-print`} href="#main">
         Saltar al contenido
       </a>
       <header className={`${styles.header} no-print`}>

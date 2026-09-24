@@ -7,6 +7,7 @@ import { QuoteDocument } from '../components/QuoteDocument';
 import { StatusBadge } from '../components/StatusBadge';
 import { TotalsSummary } from '../components/TotalsSummary';
 import { navigate } from '../hooks/useRoute';
+import { printQuote } from '../utils/print';
 import { calculateTotals } from '../lib/calculations';
 import { createId } from '../lib/id';
 import { STATUS_LABELS, createLineItem } from '../lib/quotes';
@@ -81,6 +82,15 @@ function Editor({ quote, data, actions }: EditorProps) {
         <div className="page-actions">
           <button
             type="button"
+            className="btn btn-primary"
+            onClick={() => printQuote(quote, client)}
+            title="Abre el diálogo de impresión: elige «Guardar como PDF»"
+          >
+            <Icon name="download" />
+            Descargar PDF
+          </button>
+          <button
+            type="button"
             className="btn btn-secondary"
             onClick={() => {
               const copy = actions.duplicateQuote(quote.id);
@@ -112,7 +122,7 @@ function Editor({ quote, data, actions }: EditorProps) {
         </button>
       </div>
 
-      <div className={styles.layout} data-view={view}>
+      <div className={styles.layout} data-view={view} data-print="layout">
         <div className={`${styles.editor} no-print`}>
           <section className="card card-body" aria-labelledby={`${uid}-general`}>
             <h2 id={`${uid}-general`} className="card-title">
@@ -230,8 +240,16 @@ function Editor({ quote, data, actions }: EditorProps) {
           </section>
         </div>
 
-        <aside className={styles.preview} aria-label="Vista previa del documento">
-          <div className={styles.previewFrame}>
+        <aside
+          className={styles.preview}
+          aria-label="Vista previa del documento"
+          data-print="document"
+        >
+          <p className={`${styles.printHint} no-print`}>
+            <Icon name="download" />
+            Para guardar el PDF, elige «Guardar como PDF» en el diálogo de impresión.
+          </p>
+          <div className={styles.previewFrame} data-print="frame">
             <QuoteDocument quote={quote} company={data.company} client={client} />
           </div>
         </aside>

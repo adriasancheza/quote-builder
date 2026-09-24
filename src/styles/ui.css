@@ -237,6 +237,7 @@
 }
 
 .card-title {
+  margin-bottom: var(--space-4);
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
 }

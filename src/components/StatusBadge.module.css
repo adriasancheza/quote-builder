@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.draft {
+  color: var(--status-draft-fg);
+  background: var(--status-draft-bg);
+}
+
+.sent {
+  color: var(--status-sent-fg);
+  background: var(--status-sent-bg);
+}
+
+.accepted {
+  color: var(--status-accepted-fg);
+  background: var(--status-accepted-bg);
+}
+
+.rejected {
+  color: var(--status-rejected-fg);
+  background: var(--status-rejected-bg);
+}

@@ -1,0 +1,123 @@
+.page {
+  gap: var(--space-5);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.heading {
+  min-width: 0;
+}
+
+.back {
+  margin-left: calc(var(--space-3) * -1);
+  margin-bottom: var(--space-2);
+}
+
+.titleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.readonly {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Segmented control (mobile only) */
+.switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+}
+
+.switcher button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.switcher button[aria-pressed='true'] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.editor {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.layout[data-view='edit'] .preview,
+.layout[data-view='preview'] .editor {
+  display: none;
+}
+
+.previewFrame {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 1180px) {
+  .switcher {
+    display: none;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+
+  .layout[data-view] .preview,
+  .layout[data-view] .editor {
+    display: grid;
+  }
+
+  .preview {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+    max-height: calc(100vh - var(--header-height) - var(--space-8));
+    overflow: auto;
+    border-radius: var(--radius-md);
+  }
+
+  /* Scale the "paper" down a touch so it reads like a page thumbnail. */
+  .previewFrame {
+    font-size: 0.95em;
+  }
+}

@@ -1,12 +1,19 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { AppShell } from './components/AppShell';
 import { EmptyState } from './components/EmptyState';
+import { PageSkeleton } from './components/PageSkeleton';
 import { StorageNotice } from './components/StorageNotice';
 import { useRoute } from './hooks/useRoute';
 import { paths, type Route } from './lib/routes';
 import { ClientsPage } from './pages/ClientsPage';
 import { CompanyPage } from './pages/CompanyPage';
 import { DataPage } from './pages/DataPage';
+import { QuotesPage } from './pages/QuotesPage';
+
+// The editor (and document preview) is the heaviest screen: load it on demand.
+const QuoteEditorPage = lazy(() =>
+  import('./pages/QuoteEditorPage').then((m) => ({ default: m.QuoteEditorPage })),
+);
 
 const TITLES: Record<Route['name'], string> = {
   quotes: 'Presupuestos',
@@ -42,11 +49,13 @@ function Page({ route }: { route: Route }) {
       return <DataPage />;
     case 'notFound':
       return <NotFound />;
-    default:
+    case 'quotes':
+      return <QuotesPage />;
+    case 'quote':
       return (
-        <div className="page">
-          <h1 className="page-title">{TITLES[route.name]}</h1>
-        </div>
+        <Suspense fallback={<PageSkeleton />}>
+          <QuoteEditorPage key={route.id} id={route.id} />
+        </Suspense>
       );
   }
 }

@@ -104,7 +104,7 @@ export function createAppStore(options: StoreOptions = {}): AppStore {
 
   const store: AppStore = {
     getState: () => state,
-    subscribe(listener) {
+    subscribe: (listener) => {
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
@@ -120,26 +120,26 @@ function createActions(
   context: () => FactoryContext,
 ) {
   return {
-    updateCompany(company: CompanyProfile) {
+    updateCompany: (company: CompanyProfile) => {
       dispatch({ type: 'company/update', company });
     },
-    saveClient(client: Omit<Client, 'id'> & { id?: string }): Client {
+    saveClient: (client: Omit<Client, 'id'> & { id?: string }): Client => {
       const saved: Client = { ...client, id: client.id ?? context().makeId() };
       dispatch({ type: 'client/save', client: saved });
       return saved;
     },
-    deleteClient(id: string) {
+    deleteClient: (id: string) => {
       dispatch({ type: 'client/delete', id });
     },
-    createQuote(): Quote {
+    createQuote: (): Quote => {
       const quote = createQuote(getState().data.quotes, context());
       dispatch({ type: 'quote/save', quote });
       return quote;
     },
-    saveQuote(quote: Quote) {
+    saveQuote: (quote: Quote) => {
       dispatch({ type: 'quote/save', quote: { ...quote, updatedAt: context().now } });
     },
-    duplicateQuote(id: string): Quote | null {
+    duplicateQuote: (id: string): Quote | null => {
       const { quotes } = getState().data;
       const source = quotes.find((q) => q.id === id);
       if (!source) return null;
@@ -147,10 +147,10 @@ function createActions(
       dispatch({ type: 'quote/save', quote: copy });
       return copy;
     },
-    deleteQuote(id: string) {
+    deleteQuote: (id: string) => {
       dispatch({ type: 'quote/delete', id });
     },
-    replaceData(data: AppData) {
+    replaceData: (data: AppData) => {
       dispatch({ type: 'data/replace', data });
     },
   };

@@ -1,0 +1,133 @@
+/*
+ * Design tokens. Neutral business palette + one accent (blue).
+ * Light theme by default; dark theme follows `prefers-color-scheme`.
+ * Text/background pairs are chosen to meet WCAG AA contrast.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Typography */
+  --font-sans:
+    'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+
+  /* Spacing (4px scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Radii & shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+  --shadow-md: 0 1px 3px rgb(15 23 42 / 0.08), 0 8px 24px rgb(15 23 42 / 0.06);
+  --shadow-lg: 0 12px 40px rgb(15 23 42 / 0.18);
+
+  /* Layout */
+  --content-max: 1320px;
+  --header-height: 60px;
+
+  /* Colors — light */
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f0f2f5;
+  --color-border: #dde1e7;
+  --color-border-strong: #c3c9d2;
+  --color-text: #151a23;
+  --color-text-muted: #525c6b;
+  --color-text-subtle: #667080;
+
+  --color-accent: #1f4fd1;
+  --color-accent-hover: #1a43b3;
+  --color-accent-soft: #e8eefc;
+  --color-accent-text: #ffffff;
+  --color-focus: #1f4fd1;
+
+  --color-danger: #b42318;
+  --color-danger-hover: #971c13;
+  --color-danger-soft: #fdecea;
+  --color-on-danger: #ffffff;
+
+  --color-success: #146c3a;
+  --color-success-soft: #e1f4e8;
+
+  /* Status badges (text / background) */
+  --status-draft-fg: #3f4856;
+  --status-draft-bg: #eceef2;
+  --status-sent-fg: #1a43b3;
+  --status-sent-bg: #e3eafc;
+  --status-accepted-fg: #146c3a;
+  --status-accepted-bg: #e1f4e8;
+  --status-rejected-fg: #a1231a;
+  --status-rejected-bg: #fbe7e5;
+
+  /* The quote document always renders as white "paper", in both themes */
+  --paper-bg: #ffffff;
+  --paper-text: #151a23;
+  --paper-muted: #525c6b;
+  --paper-border: #dde1e7;
+  --paper-accent: #1f4fd1;
+  --paper-tint: #f3f5f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1218;
+    --color-surface: #171b23;
+    --color-surface-muted: #1e232d;
+    --color-border: #2c3340;
+    --color-border-strong: #3d4555;
+    --color-text: #e8ebf0;
+    --color-text-muted: #a9b1be;
+    --color-text-subtle: #8f98a6;
+
+    --color-accent: #7c9dff;
+    --color-accent-hover: #9bb4ff;
+    --color-accent-soft: #1c2745;
+    --color-accent-text: #0b1020;
+    --color-focus: #9bb4ff;
+
+    --color-danger: #ff8a80;
+    --color-danger-hover: #ffa89f;
+    --color-danger-soft: #3a1c1a;
+    --color-on-danger: #1a0b0a;
+
+    --color-success: #86dba8;
+    --color-success-soft: #173524;
+
+    --status-draft-fg: #c9cfd8;
+    --status-draft-bg: #2a303b;
+    --status-sent-fg: #a9bfff;
+    --status-sent-bg: #1f2b4d;
+    --status-accepted-fg: #86dba8;
+    --status-accepted-bg: #173524;
+    --status-rejected-fg: #ffa39a;
+    --status-rejected-bg: #3d1d1a;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 1px 3px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 12px 40px rgb(0 0 0 / 0.55);
+  }
+}
